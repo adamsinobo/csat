@@ -1,5 +1,7 @@
-import 'dart:io';
 
+
+import 'package:csat/buttonku.dart';
+import 'package:csat/textfieldku.dart';
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 
@@ -35,16 +37,16 @@ class _LoginState extends State<Login> {
                 height: 100,
                 width: 100,
                 decoration: BoxDecoration(
-                  boxShadow: [
-                    BoxShadow(
-                      color: Colors.grey,
-                      offset: Offset(5.0, 5.0),
-                    )
-                  ],
-                  border: Border.all(
-                    width: 1,
-                    color: Colors.white,
-                  ),
+                    boxShadow: [
+                      BoxShadow(
+                        color: Colors.grey,
+                        offset: Offset(5.0, 5.0),
+                      )
+                    ],
+                    border: Border.all(
+                      width: 1,
+                      color: Colors.white,
+                    ),
                     shape: BoxShape.circle,
                     image: DecorationImage(
                       image: AssetImage("img/logo.png"),
@@ -55,83 +57,25 @@ class _LoginState extends State<Login> {
             SizedBox(
               height: 20,
             ),
-            TextField(
-              controller: username,
-              decoration: InputDecoration(
-                  hintText: "Username",
-                  fillColor: Colors.white,
-                  filled: true,
-                  border: UnderlineInputBorder(
-                      borderRadius: BorderRadius.circular(20),
-                      borderSide: BorderSide.none)),
+            TextFieldku(
+              controler: "username",
+              obscureText: false,
+              hintText: "Username",
             ),
             SizedBox(
               height: 16,
             ),
-            TextField(
-              controller: password,
+            TextFieldku(
+              controler: "username",
               obscureText: true,
-              decoration: InputDecoration(
-                  hintText: "Password",
-                  fillColor: Colors.white,
-                  filled: true,
-                  border: UnderlineInputBorder(
-                      borderRadius: BorderRadius.circular(20),
-                      borderSide: BorderSide.none)),
+              hintText: "Password",
             ),
             SizedBox(
               height: 18,
             ),
-            Container(
-              width: MediaQuery.of(context).size.width,
-              decoration: BoxDecoration(
-                  borderRadius: BorderRadius.circular(20),
-                  gradient: LinearGradient(colors: [
-                    Colors.red,
-                    Colors.purple,
-                  ], begin: Alignment.centerLeft, end: Alignment.centerRight)),
-              child: FlatButton(
-                onPressed: () {
-                  if (username.text.isEmpty || password.text.isEmpty) {
-                    showDialog(
-                        context: context,
-                        builder: (context) {
-                          return Platform.isAndroid
-                              ? AlertDialog(
-                                  title: Text("Warning"),
-                                  content: Text("Data gak boleh kosong"),
-                                  actions: <Widget>[
-                                    FlatButton(
-                                      onPressed: () {
-                                        Navigator.pop(context);
-                                      },
-                                      child: Text("OK"),
-                                    )
-                                  ],
-                                )
-                              : CupertinoAlertDialog(
-                                  title: Text("Warning"),
-                                  content: Text("Data gak boleh kosong"),
-                                  actions: <Widget>[
-                                    FlatButton(
-                                      onPressed: () {
-                                        Navigator.pop(context);
-                                      },
-                                      child: Text("OK"),
-                                    )
-                                  ],
-                                );
-                        });
-                  } else {
-                    print("berhasil");
-                  }
-                },
-                child: Text(
-                  "Sign In",
-                  style: TextStyle(color: Colors.white),
-                ),
-              ),
-            )
+            Loginku(
+              text: "Sign In",
+            ),
           ],
         ),
       ),
